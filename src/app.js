@@ -12,5 +12,7 @@ module.exports = app;
 const authorsService = require('./services/authors.service');
 
 const authorsRoutes = require('./routes/authors.routes');
-
 app.use('/authors', authorsRoutes);
+
+const postsRoutes = require('./routes/posts.routes');
+app.use('/posts', postsRoutes);
