@@ -8,3 +8,10 @@ app.get('/', (req, res) => {
 });
 
 module.exports = app;
+
+const authorsService = require('./services/authors.service');
+
+app.get('/test-authors', async (req, res) => {
+  const authors = await authorsService.getAllAuthors();
+  res.json(authors);
+});
