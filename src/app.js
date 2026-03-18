@@ -11,7 +11,6 @@ module.exports = app;
 
 const authorsService = require('./services/authors.service');
 
-app.get('/test-authors', async (req, res) => {
-  const authors = await authorsService.getAllAuthors();
-  res.json(authors);
-});
+const authorsRoutes = require('./routes/authors.routes');
+
+app.use('/authors', authorsRoutes);
