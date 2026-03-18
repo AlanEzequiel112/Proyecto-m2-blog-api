@@ -1,13 +1,16 @@
-const express = require('express');
-const app = express();
+require('dotenv').config();
+const app = require('./app');
+const pool = require('./db');
+
 const PORT = process.env.PORT || 3000;
 
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.json({ message: 'API funcionando correctamente' });
-});
-
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
+
+  try {
+    const res = await pool.query('SELECT NOW()');
+    console.log('🧪 Test DB OK:', res.rows[0]);
+  } catch (error) {
+    console.error('❌ Error conectando a DB:', error);
+  }
 });
