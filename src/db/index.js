@@ -1,11 +1,14 @@
 const { Pool } = require('pg');
 
+const isTest = process.env.NODE_ENV === 'test';
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false,
-  },
+  ssl: isTest
+    ? false
+    : {
+        rejectUnauthorized: false,
+      },
   client_encoding: 'UTF8',
 });
 
