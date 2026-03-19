@@ -7,6 +7,11 @@
     "dev": "nodemon src/server.js",
     "test": "jest --detectOpenHandles --forceExit"
   },
+
+  "jest": {
+  "setupFiles": ["<rootDir>/tests/setup.js"]
+  },
+  
   "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.6",
@@ -20,3 +25,4 @@
     "supertest": "^7.2.2"
   }
 }
+

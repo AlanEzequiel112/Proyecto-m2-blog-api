@@ -5,7 +5,7 @@ const postsService = require('../services/posts.service');
 const AppError = require('../middleware/AppError');
 
 // GET /posts
-router.get('/', async (req, res) => {
+router.get('/', async (req, res,next) => {
     try { 
       const posts = await postsService.getAllPosts();
        res.json(posts);
