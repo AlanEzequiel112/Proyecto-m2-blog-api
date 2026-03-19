@@ -20,6 +20,7 @@ paths:
     get:
       tags: [Authors]
       summary: Obtener todos los authors
+      operationId: getAllAuthors
       responses:
         '200':
           description: Lista de authors
@@ -31,6 +32,7 @@ paths:
     post:
       tags: [Authors]
       summary: Crear un author
+      operationId: createAuthor
       requestBody:
         required: true
         content:
@@ -59,6 +61,7 @@ paths:
     get:
       tags: [Authors]
       summary: Obtener author por ID
+      operationId: getAuthorById
       parameters:
         - in: path
           name: id
@@ -82,6 +85,7 @@ paths:
     put:
       tags: [Authors]
       summary: Actualizar author
+      operationId: updateAuthor
       parameters:
         - in: path
           name: id
@@ -116,6 +120,7 @@ paths:
     delete:
       tags: [Authors]
       summary: Eliminar author
+      operationId: deleteAuthor
       parameters:
         - in: path
           name: id
@@ -136,6 +141,7 @@ paths:
     get:
       tags: [Posts]
       summary: Obtener todos los posts
+      operationId: getAllPosts
       responses:
         '200':
           description: Lista de posts
@@ -147,6 +153,7 @@ paths:
     post:
       tags: [Posts]
       summary: Crear post
+      operationId: createPost
       requestBody:
         required: true
         content:
@@ -176,6 +183,7 @@ paths:
     get:
       tags: [Posts]
       summary: Obtener post por ID
+      operationId: getPostById
       parameters:
         - in: path
           name: id
@@ -199,6 +207,7 @@ paths:
     put:
       tags: [Posts]
       summary: Actualizar post
+      operationId: updatePost
       parameters:
         - in: path
           name: id
@@ -233,6 +242,7 @@ paths:
     delete:
       tags: [Posts]
       summary: Eliminar post
+      operationId: deletePost
       parameters:
         - in: path
           name: id
@@ -253,6 +263,7 @@ paths:
     get:
       tags: [Posts]
       summary: Obtener posts por author
+      operationId: getPostsByAuthor
       parameters:
         - in: path
           name: authorId

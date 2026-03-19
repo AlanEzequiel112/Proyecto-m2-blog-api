@@ -19,3 +19,21 @@ app.use('/posts', postsRoutes);
 
 const errorHandler = require('./middleware/errorHandler');
 app.use(errorHandler);
+
+const swaggerUi = require('swagger-ui-express');
+const path = require('path');
+const YAML = require('yamljs');
+
+const swaggerPath = path.join(__dirname, '../docs/openapi.yaml');
+const swaggerDocument = YAML.load(swaggerPath);
+
+app.use(
+  '/docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, {
+    explorer: true,
+    swaggerOptions: {
+      filter: true,
+    },
+  })
+);
