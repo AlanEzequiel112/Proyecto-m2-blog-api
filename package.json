@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "jest --detectOpenHandles --forceExit",
+    "setup-db": "node scripts/setup-db.js"
   },
 
   "jest": {
@@ -25,4 +26,5 @@
     "supertest": "^7.2.2"
   }
 }
+
 
