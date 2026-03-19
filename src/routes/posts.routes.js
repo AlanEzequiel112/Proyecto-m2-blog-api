@@ -73,3 +73,60 @@ router.post('/', async (req, res, next) => {
 });
 
 module.exports = router;
+
+// PUT /posts/:id
+router.put('/:id', async (req, res, next) => {
+  try {
+    const data = req.body;
+
+    if (Object.keys(data).length === 0) {
+      throw new AppError('Debe enviar al menos un campo', 400);
+    }
+
+    // ❗ Validar NOT NULL
+    if ('title' in data && !data.title) {
+      throw new AppError('title no puede ser vacío', 400);
+    }
+
+    if ('content' in data && !data.content) {
+      throw new AppError('content no puede ser vacío', 400);
+    }
+
+    if ('author_id' in data && !data.author_id) {
+      throw new AppError('author_id no puede ser vacío', 400);
+    }
+
+    const updated = await postsService.updatePost(
+      req.params.id,
+      data
+    );
+
+    if (!updated) {
+      throw new AppError('Post no encontrado', 404);
+    }
+
+    res.json(updated);
+
+  } catch (error) {
+    if (error.code === '23503') {
+      return next(new AppError('El author_id no existe', 400));
+    }
+    next(error);
+  }
+});
+
+// DELETE /posts/:id
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const deleted = await postsService.deletePost(req.params.id);
+
+    if (!deleted) {
+      throw new AppError('Post no encontrado', 404);
+    }
+
+    res.status(204).send();
+
+  } catch (error) {
+    next(error);
+  }
+});

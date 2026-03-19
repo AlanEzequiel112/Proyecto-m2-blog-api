@@ -40,9 +40,34 @@ const createPost = async ({ author_id, title, content, published }) => {
   return result.rows[0];
 };
 
+// Actualizar post
+const updatePost = async (id, { author_id, title, content, published }) => {
+  const result = await pool.query(
+    `UPDATE posts
+     SET author_id = $1, title = $2, content = $3, published = $4
+     WHERE id = $5
+     RETURNING *`,
+    [author_id, title, content, published, id]
+  );
+
+  return result.rows[0];
+};
+
+// Eliminar post
+const deletePost = async (id) => {
+  const result = await pool.query(
+    'DELETE FROM posts WHERE id = $1 RETURNING *',
+    [id]
+  );
+
+  return result.rows[0];
+};
+
 module.exports = {
   getAllPosts,
   getPostById,
   getPostsByAuthor,
   createPost,
+  updatePost,
+  deletePost
 };
